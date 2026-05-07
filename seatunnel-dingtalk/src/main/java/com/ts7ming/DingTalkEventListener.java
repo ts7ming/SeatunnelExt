@@ -25,6 +25,7 @@ import java.util.Base64;
 public class DingTalkEventListener implements EventHandler {
     private static final String WEBHOOK_URL = System.getProperty("dingtalk.webhook.url", "https://oapi.dingtalk.com/robot/send?access_token=YOUR_ACCESS_TOKEN");
     private static final String SECRET = System.getProperty("dingtalk.secret", "YOUR_SECRET");
+    
     @Override
     public void handle(Event event) {
         EventType eventType = event.getEventType();
@@ -93,9 +94,13 @@ public class DingTalkEventListener implements EventHandler {
     }
 
     private void sendAlert(String content) {
-          sendDingTalkMessage(content);
+        sendDingTalkMessage(content);
     }
 
+    /**
+     * 发送钉钉消息
+     * @param message 消息内容
+     */
     void sendDingTalkMessage(String message) {
         try {
             long timestamp = System.currentTimeMillis();
@@ -130,6 +135,13 @@ public class DingTalkEventListener implements EventHandler {
             log.error("发送钉钉消息异常: {}", message, e);
         }
     }
+    
+    /**
+     * 生成钉钉 webhook 签名
+     * @param timestamp 时间戳
+     * @param secret 密钥
+     * @return 签名字符串
+     */
     private String generateSign(long timestamp, String secret) throws Exception {
         String stringToSign = timestamp + "\n" + secret;
         Mac mac = Mac.getInstance("HmacSHA256");

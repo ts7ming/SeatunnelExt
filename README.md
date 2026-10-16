@@ -94,5 +94,9 @@ INFO  [o.a.s.e.s.CoordinatorService  ] [pool-4-thread-1] - [localhost]:5801 [sea
 ```bash
 sh bin/seatunnel.sh --async -Ddingtalk.webhook.url="https://oapi.dingtalk.com/robot/send?access_token=钉钉群Token" -Ddingtalk.secret="钉钉群secret" --config 任务配置.conf  -n "任务名称"
 ```
+## 集群模式
+如果是集群运行 -D参数无法提交到集群Jvm, 可以在 /config/jvm_master_options 里增加
+-Ddingtalk.webhook.url=https://oapi.dingtalk.com/robot/send?access_token=YourToken
+-Ddingtalk.secret=YourSecret
 
 ## Done!

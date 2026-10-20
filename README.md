@@ -1,5 +1,8 @@
 # Seatunnel - 插件
 
+> 推荐使用更强大灵活的 [SeatunnelNotify](https://github.com/ts7ming/SeatunnelNotify)
+
+
 ## 说明
 #### 背景
 - 使用 Seatunnel 执行数据同步. 部署步骤参考
